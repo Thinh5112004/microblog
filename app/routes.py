@@ -81,8 +81,6 @@ def register():
 
 @app.route('/user/<username>')
 @login_required
-@app.route('/user/<username>')
-@login_required
 def user(username):
     user = db.first_or_404(sa.select(User).where(User.username == username))
     page = request.args.get('page', 1, type=int)
@@ -178,3 +176,5 @@ def explore():
         if posts.has_prev else None
     return render_template("index.html", title='Explore', posts=posts.items,
                            next_url=next_url, prev_url=prev_url)
+    
+    
