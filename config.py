@@ -19,5 +19,7 @@ class Config:
     ADMINS = [os.environ.get("ADMIN_EMAIL")]
     SERVER_NAME = 'localhost:5000'
     PREFERRED_URL_SCHEME = 'http'
+    
+    LANGUAGES = ['en', 'es']
 
     POSTS_PER_PAGE = 3
