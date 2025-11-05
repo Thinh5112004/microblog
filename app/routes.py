@@ -10,6 +10,8 @@ from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
 from app.models import User, Post
 from app.email import send_password_reset_email
 from langdetect import detect, LangDetectException
+from app.my_translate import translate
+
 
 @app.before_request
 def before_request():
@@ -211,3 +213,12 @@ def unfollow(username):
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
+    
+    
+@app.route('/translate', methods=['POST'])
+@login_required
+def translate_text():
+    data = request.get_json()
+    return {'text': translate(data['text'],
+                              data['source_language'],
+                              data['dest_language'])}
